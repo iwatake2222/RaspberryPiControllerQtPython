@@ -1,5 +1,6 @@
 import threading
 import time
+import RPi.GPIO as GPIO
 
 
 PERIOD_MS = 20
@@ -11,6 +12,7 @@ resource = None
 dictThread = {"dummy":0}
 dictResource = {"dummy":0}
 
+initializedList = []
 
 class Resource(object):
 	def __init__(self, periodMs, dutyRatio=0):
@@ -35,18 +37,22 @@ def setPwm(gpio, dutyRatio, periodMs):
 
 def loopPwm(gpio, resource):
 	while True:
-		#print "High"
-		print resource.periodMs*resource.dutyRatio/100.0/1000.0
-		print resource.periodMs*(1-resource.dutyRatio/100.0)/1000.0
-		time.sleep(1.01)
-		#time.sleep(resource.periodMs*resource.dutyRatio/100/1000)
-		#print "Low"
-		#time.sleep(resource.periodMs*(1-resource.dutyRatio/100)/1000)
+		if resource.dutyRatio != 0:
+			GPIO.output(gpio, GPIO.HIGH)
+			time.sleep(resource.periodMs*resource.dutyRatio/100.0/1000.0)
+		if resource.dutyRatio != 100:
+			GPIO.output(gpio, GPIO.LOW)
+			time.sleep(resource.periodMs*(1-resource.dutyRatio/100.0)/1000.0)
 
 
 def startPwm(gpio, periodMs, dutyRatio):
 	global dictThread
 	global dictResource
+	if gpio not in initializedList:
+		GPIO.setwarnings(False)
+		GPIO.setmode(GPIO.BCM)
+		GPIO.setup(gpio, GPIO.OUT)
+		initializedList.append(gpio)
 	print "Start Thread"
 	dictResource[gpio] = Resource(periodMs, dutyRatio)
 	dictThread[gpio] = threading.Thread(target=loopPwm, args=(gpio, dictResource[gpio]))

@@ -19,31 +19,31 @@ function monitor() {
 
 function callApiLed(index, state) {
     callApi(
-        'http://localhost:8080/led',
+        'http://192.168.0.144:8080/led',
         {"index": index, "onoff": state===false?"off":"on"});
 }
 
 function callApiLed3Color(r, g, b) {
     callApi(
-        'http://localhost:8080/ledColor',
+        'http://192.168.0.144:8080/ledColor',
         {"r": r, "g": g, "b": b});
 }
 
 function callApiMotorPwm(speed) {
     callApi(
-        'http://localhost:8080/motorPwm',
+        'http://192.168.0.144:8080/motorPwm',
         {"speed": speed});
 }
 
 function callApiServo(position) {
     callApi(
-        'http://localhost:8080/servo',
+        'http://192.168.0.144:8080/servo',
         {"position": position});
 }
 
 function callApiButton(index, cb) {
     callApi(
-        'http://localhost:8080/button',
+        'http://192.168.0.144:8080/button',
         {"index": index},
         function (o) {
             //console.log(o.responseText);
@@ -58,7 +58,7 @@ function callApiButton(index, cb) {
 
 function callApiRotaryEncoder(cb) {
     callApi(
-        'http://localhost:8080/rotaryEncoder',
+        'http://192.168.0.144:8080/rotaryEncoder',
         {"dummy": 0},
         function (o) {
             //console.log(o.responseText);
@@ -69,7 +69,7 @@ function callApiRotaryEncoder(cb) {
 
 function callApiTap(cb) {
     callApi(
-        'http://localhost:8080/tap',
+        'http://192.168.0.144:8080/tap',
         {"dummy": 0},
         function (o) {
             console.log(o.responseText);
@@ -80,7 +80,7 @@ function callApiTap(cb) {
 
 function callApiGSensor(cb) {
     callApi(
-        'http://localhost:8080/GSensor',
+        'http://192.168.0.144:8080/GSensor',
         {"dummy": 0},
         function (o) {
             console.log(o.responseText);

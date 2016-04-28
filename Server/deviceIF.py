@@ -1,7 +1,7 @@
 import sys
 
-#sys.path.append("./device")
-sys.path.append("./deviceMock")
+sys.path.append("./device")
+#sys.path.append("./deviceMock")
 from gpioPWM import *
 from gpioInOut import *
 import gpioRotaryEncoder
@@ -9,19 +9,19 @@ from i2cAccel import *
 
 
 # portmap
-portLed = (1, 2)
-portColor = (3, 4, 5)
-portMotor = (6, )
-portServo = (7, )
-portButton = (8, 9)
-portRotaryEncoder = (10, 11)
-i2cAddressAccel = 0x11
+portLed = (17, 27)
+portColor = (23, 24, 25)
+portMotor = (16, )
+portServo = (26, )
+portButton = (5, 6)
+portRotaryEncoder = (13, 12)
+i2cAddressAccel = 0x53
 
 # PWM setting
-PWM_PERIOD_MS = 20
+PWM_PERIOD_MS = 5
 
 # Servo PWM setting
-SERVO_PERIOD_MS = 20
+SERVO_PERIOD_MS = 14
 SERVO_ACTIVE_PERIOD_MIN_MS = 0.5
 SERVO_ACTIVE_PERIOD_MAX_MS = 2.5
 
