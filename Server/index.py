@@ -4,7 +4,7 @@ import os
 import sys
 import json
 from bottle import route, run, request, HTTPResponse
-from deviceIFMock import *
+from deviceIF import *
 
 @route('/')
 def root():
@@ -28,6 +28,7 @@ def ledColorIf():
 	var = request.json
 	# print (var)
 	ledColor(int(var["r"]), int(var["g"]), int(var["b"]))
+	set()
 
 
 @route('/motorPwm', method='POST')
@@ -52,7 +53,7 @@ def buttonIf():
 	onoff = button(index)
 	retBody = {
 		"ret": "ok",
-		"onoff": onoff
+		"onoff": "on" if onoff == True else "off"
 	}
 	r = HTTPResponse(status=200, body=retBody)
 	r.set_header('Content-Type', 'application/json')
