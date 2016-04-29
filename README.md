@@ -11,8 +11,9 @@
 	* Input: Accelerometer (ADXL345)
 * Client controller, which accepts user input and shows device status, created by Qt accesses to the server using Web API with JSON. It can be executed as a PyQt or a normal Qt Application
 
+* Link to Youtube
+[![Youtube](00_doc/picture.jpg)](https://www.youtube.com/watch?v=BdQB3FADOIc)
 
-![Picture](00_doc/picture.jpg)
 
 ## Whole picture
 ![Whole picture](00_doc/wholePicture.jpg)
